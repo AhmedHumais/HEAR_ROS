@@ -79,13 +79,13 @@ ROSUnit_Sub* RosSystem::createSub(TYPE d_type, std::string topic_name){
     ROSUnit_Sub* sub;
     switch(d_type){
         case TYPE::Float3 :
-            sub = new ROSUnitPointSub(nh_, topic_name, sub_counter++);
+            sub = new ROSUnitPointSub(pnh_, topic_name, sub_counter++);
             break;
         case TYPE::QUAT :
-            sub = new ROSUnitQuatSub(nh_, topic_name, sub_counter++);
+            sub = new ROSUnitQuatSub(pnh_, topic_name, sub_counter++);
             break;
         case TYPE::Float :
-            sub = new ROSUnitFloatSub(nh_, topic_name, sub_counter++);
+            sub = new ROSUnitFloatSub(pnh_, topic_name, sub_counter++);
             break;
         default:
             std::cout <<"invalid subscriber type" <<std::endl;
