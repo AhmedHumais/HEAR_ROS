@@ -141,6 +141,7 @@ void RosSystem::createPub(TYPE d_type, std::string topic_name, OutputPort<T>* sr
             break;
         case TYPE::IntVec :
             pub = new ROSUnitIntArrPub(pnh_, topic_name, pub_counter++);
+            break;
         case TYPE::QUAT :
             pub = new ROSUnitQuatPub(pnh_, topic_name, pub_counter++);
             break;
