@@ -10,7 +10,7 @@
 #include <tf2/LinearMath/Matrix3x3.h>
 #include <tf2/LinearMath/Quaternion.h>
 
-#include <hear_msgs/set_float.h>
+// #include <hear_msgs/set_float.h>
 
 #include "HEAR_core/Block.hpp"
 #include "HEAR_core/ExternalPort.hpp"
@@ -35,7 +35,7 @@ private:
     void callback_ori(const geometry_msgs::QuaternionStamped::ConstPtr& );
     void callback_free_acc(const geometry_msgs::Vector3Stamped::ConstPtr& );
     void callback_angular_vel(const geometry_msgs::Vector3Stamped::ConstPtr&);
-    bool srv_callback(hear_msgs::set_float::Request&, hear_msgs::set_float::Response&);
+    // bool srv_callback(hear_msgs::set_float::Request&, hear_msgs::set_float::Response&);
     tf2::Matrix3x3 rot_offset;
     tf2::Vector3 trans_offset;
 

@@ -12,7 +12,7 @@
 #include "HEAR_core/Block.hpp"
 #include "HEAR_core/Vector3D.hpp"
 #include "HEAR_core/ExternalPort.hpp"
-#include "hear_msgs/set_bool.h"
+#include "std_srvs/SetBool.h"
 #include "tf2/LinearMath/Transform.h"
 
 namespace HEAR{
@@ -39,7 +39,7 @@ private:
     bool to_map = false;
 
     void odom_callback(const nav_msgs::Odometry::ConstPtr& odom_msg);
-    bool srv_callback(hear_msgs::set_bool::Request& req, hear_msgs::set_bool::Response& res);
+    bool srv_callback(std_srvs::SetBool::Request& req, std_srvs::SetBool::Response& res);
 
 public:
     ROSUnit_SLAM(ros::NodeHandle& nh, bool use_map = false);

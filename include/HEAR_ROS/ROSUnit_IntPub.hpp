@@ -15,7 +15,7 @@ public:
         _input_port = new InputPort<int>(idx, 0);
         id_ = idx; 
     }
-    TYPE getType(){return TYPE::Float;}
+    TYPE getType(){return TYPE::Int;}
     void process(){
         if (_input_port != NULL){
             std_msgs::Int32 msg;

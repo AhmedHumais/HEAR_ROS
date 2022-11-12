@@ -10,14 +10,16 @@
 #include "HEAR_ROS/ROSUnit_FloatPub.hpp"
 #include "HEAR_ROS/ROSUnit_PointPub.hpp"
 #include "HEAR_ROS/ROSUnit_QuatPub.hpp"
+#include "HEAR_ROS/ROSUnit_IntPub.hpp"
+#include "HEAR_ROS/ROSUnit_IntArrPub.hpp"
 #include "HEAR_ROS/ROSUnit_ResetSrv.hpp"
-#include "HEAR_ROS/ROSUnit_UpdateContSrv.hpp"
-#include "HEAR_ROS/ROSUnit_UpdateMRFTsrv.hpp"
 #include "HEAR_ROS/ROSUnit_BoolSrv.hpp"
 #include "HEAR_ROS/ROSUnit_Sub.hpp"
 #include "HEAR_ROS/ROSUnit_PointSub.hpp"
+#include "HEAR_ROS/ROSUnit_FloatArrSub.hpp"
 #include "HEAR_ROS/ROSUnit_FloatSub.hpp"
 #include "HEAR_ROS/ROSUnit_QuatSub.hpp"
+#include "HEAR_ROS/ROSUnit_IntSub.hpp"
 #include <ros/ros.h>
 
 namespace HEAR{
@@ -87,6 +89,12 @@ ROSUnit_Sub* RosSystem::createSub(TYPE d_type, std::string topic_name){
         case TYPE::Float :
             sub = new ROSUnitFloatSub(pnh_, topic_name, sub_counter++);
             break;
+        case TYPE::FloatVec :
+            sub = new ROSUnitFloatArrSub(pnh_, topic_name, sub_counter++);
+            break;
+        case TYPE::Int :
+            sub = new ROSUnitIntSub(pnh_, topic_name, sub_counter++);
+            break;
         default:
             std::cout <<"invalid subscriber type" <<std::endl;
             assert(false);
@@ -128,6 +136,11 @@ void RosSystem::createPub(TYPE d_type, std::string topic_name, OutputPort<T>* sr
         case TYPE::FloatVec :
             pub = new ROSUnitFloatArrPub(pnh_, topic_name, pub_counter++);
             break;
+        case TYPE::Int :
+            pub = new ROSUnitIntPub(pnh_, topic_name, pub_counter++);
+            break;
+        case TYPE::IntVec :
+            pub = new ROSUnitIntArrPub(pnh_, topic_name, pub_counter++);
         case TYPE::QUAT :
             pub = new ROSUnitQuatPub(pnh_, topic_name, pub_counter++);
             break;
@@ -164,17 +177,8 @@ ExternalTrigger* RosSystem::createUpdateTrigger(UPDATE_MSG_TYPE type, std::strin
     //TODO make class for ROSUnit_Srv
     ExternalTrigger* trig;
     switch(type){
-        case UPDATE_MSG_TYPE::PID_UPDATE :{
-            auto srv = new ROSUnit_UpdateContSrv(pnh_);
-            trig = srv->registerServer(topic);
-            break;}
         case UPDATE_MSG_TYPE::BOOL_MSG :{
             auto srv = new ROSUnit_BoolServer(pnh_);
-            trig = srv->registerServer(topic);
-            break;
-        }
-        case UPDATE_MSG_TYPE::MRFT_UPDATE : {
-            auto srv = new ROSUnit_UpdateMRFTsrv(pnh_);
             trig = srv->registerServer(topic);
             break;
         }

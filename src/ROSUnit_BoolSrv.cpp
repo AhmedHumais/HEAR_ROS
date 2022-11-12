@@ -11,7 +11,7 @@ UpdateTrigger* ROSUnit_BoolServer::registerServer(const std::string &service_top
     return ext_trig;
 }
 
-bool ROSUnit_BoolServer::srv_callback(hear_msgs::set_bool::Request& req, hear_msgs::set_bool::Response& res){
+bool ROSUnit_BoolServer::srv_callback(std_srvs::SetBool::Request& req, std_srvs::SetBool::Response& res){
     BoolMsg msg;
     msg.data = req.data;
     ext_trig->UpdateCallback((UpdateMsg*)&msg);

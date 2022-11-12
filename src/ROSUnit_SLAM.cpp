@@ -93,7 +93,7 @@ void ROSUnit_SLAM::odom_callback(const nav_msgs::Odometry::ConstPtr& odom_msg){
     ori_out_port->write(Vector3D<float>(r, p, y));
 }
 
-bool ROSUnit_SLAM::srv_callback(hear_msgs::set_bool::Request& req, hear_msgs::set_bool::Response& res){
+bool ROSUnit_SLAM::srv_callback(std_srvs::SetBool::Request& req, std_srvs::SetBool::Response& res){
     Vector3D<float> angs, trans;
     pos_inp_port->read(trans);
     ori_inp_port->read(angs);

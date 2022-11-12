@@ -2,7 +2,7 @@
 #define ROSUNIT_BOOLSRV_HPP
 
 #include <ros/ros.h>
-#include <hear_msgs/set_bool.h>
+#include "std_srvs/SetBool.h"
 #include <string>
 
 #include "HEAR_core/ExternalTrigger.hpp"
@@ -13,7 +13,7 @@ private:
     ros::NodeHandle nh_;
     ros::ServiceServer m_server;
     UpdateTrigger* ext_trig;
-    bool srv_callback(hear_msgs::set_bool::Request&, hear_msgs::set_bool::Response&);
+    bool srv_callback(std_srvs::SetBool::Request&, std_srvs::SetBool::Response&);
 public:
     ROSUnit_BoolServer(ros::NodeHandle&);
     UpdateTrigger* registerServer(const std::string&);

@@ -7,7 +7,7 @@ ROSUnit_PoseProvider::ROSUnit_PoseProvider(ros::NodeHandle& nh): nh_(nh){
 
 
 std::vector<ExternalOutputPort<Vector3D<float>>*> ROSUnit_PoseProvider::registerOptiPose(std::string t_name){
-    m_server = nh_.advertiseService("/set_height_offset", &ROSUnit_PoseProvider::srv_callback, this);
+    // m_server = nh_.advertiseService("/set_height_offset", &ROSUnit_PoseProvider::srv_callback, this);
     rot_offset.setRPY(0.0, 0.0, M_PI/2.0);
     trans_offset.setZero();
     
@@ -42,10 +42,10 @@ ExternalOutputPort<Vector3D<float>>* ROSUnit_PoseProvider::registerImuAccelerati
     return imu_acc_port;
 }
 
-bool ROSUnit_PoseProvider::srv_callback(hear_msgs::set_float::Request& req, hear_msgs::set_float::Response& res) {
-    trans_offset.setZ(req.data);
-    return true;
-}
+// bool ROSUnit_PoseProvider::srv_callback(hear_msgs::set_float::Request& req, hear_msgs::set_float::Response& res) {
+//     trans_offset.setZ(req.data);
+//     return true;
+// }
 
 void ROSUnit_PoseProvider::callback_opti_pose(const geometry_msgs::PoseStamped::ConstPtr& msg){
     
